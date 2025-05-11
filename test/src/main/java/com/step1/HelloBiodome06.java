@@ -25,7 +25,8 @@ public class HelloBiodome06 {
                     System.out.println("일치하지 않습니다.");
                     break;
                 }
-            }catch (Exception e) {
+            }catch (ArrayIndexOutOfBoundsException e) {
+                e.printStackTrace();
                 System.out.println("일치하지 않습니다.");
                 break;
             }
