@@ -11,7 +11,8 @@ public class HelloBiodome01 {
         String name = args[0];
         String result = String.join("", Arrays.copyOfRange(name.split(""), 0, 10));
 
-        String[] words = {"반갑습니다, \"%s\"님!", "환영합니다, \"%s\"님!", "\"%s\"님, 반갑습니다.", "\"%s\"님! 어서오세요."};
+        String[] words = {"반갑습니다, \"%s\"님!", "환영합니다, \"%s\"님!",
+                "\"%s\"님, 반갑습니다.", "\"%s\"님! 어서오세요."};
 
 
         System.out.printf(words[new Random().nextInt(words.length)], result);

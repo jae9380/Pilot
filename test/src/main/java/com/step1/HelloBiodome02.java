@@ -13,8 +13,10 @@ public class HelloBiodome02 {
                 intelligence = Double.parseDouble(args[2].replaceAll("[^0-9]","")),
                 totalE = solar+wind+intelligence;
 
-        System.out.printf("태양광 : %1$.3f, 풍력 : %2$.3f, 지열 : %3$.3f \n총 에너지 사용량은 %4$.3f 입니다. \n태양광 비율 : %5$.3f, 풍력 비율 : %6$.3f, 지열 비율 : %6$.3f",
+        System.out.printf("태양광 : %1$.0f, 풍력 : %2$.0f, 지열 : %3$.0f \n총 에너지 사용량은 %4$.0f 입니다. \n태양광 비율 : %5$.3f, 풍력 비율 : %6$.3f, 지열 비율 : %6$.3f",
                 solar, wind, intelligence, totalE, solar/totalE*100, wind/totalE*100, intelligence/totalE*100);
+    }
+}
 
 
 /*
@@ -48,5 +50,3 @@ public class HelloBiodome02 {
 */
 
 
-    }
-}

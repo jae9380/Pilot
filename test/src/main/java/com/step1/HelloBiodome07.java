@@ -27,10 +27,9 @@ public class HelloBiodome07 {
 
             if (current == '/') {
                 if (!beforeWasSlash) {
-                    if (target != '/') {
-                        answer[index++] = String.valueOf(target);
-                        answer[index++] = String.valueOf(count);
-                    }
+                    answer[index++] = String.valueOf(target);
+                    answer[index++] = String.valueOf(count);
+
                     answer[index++] = String.valueOf(current);
                     beforeWasSlash = true;
                     target = '/';
