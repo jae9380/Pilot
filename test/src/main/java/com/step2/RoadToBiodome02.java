@@ -27,21 +27,21 @@ public class RoadToBiodome02 {
     static void validationInput(String str) {
         if (str.trim().isEmpty()) {
             System.out.println("올바른 문장을 입력해주세요.");
-            systemDowun();
+            systemDown();
         }
 
         if (!str.matches("[a-zA-Z0-9가-힣]+")) {
             System.out.println("영어, 한글, 숫자만 입력할 수 있습니다.");
-            systemDowun();
+            systemDown();
         }
 
         if(str.length() < 2 || str.length() > Math.pow(10,6)) {
             System.out.println("입력가능한 문자열의 길이는 최소 2에서 최대 10^6승 입니다.");
-            systemDowun();
+            systemDown();
         }
     }
 
-    static void systemDowun() {
+    static void systemDown() {
         System.exit(1);
     }
 

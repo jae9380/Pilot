@@ -23,8 +23,10 @@ public class RoadToBiodome04 {
         for (List<Integer> current : listGroups) {
             System.out.println("------"+  count++ +"번 째 배열"+"------");
             int arrSize = current.size();
-            arr = sort(current.stream().mapToInt(Integer::intValue).toArray());
-            
+            arr = sort(current.stream()
+                    .mapToInt(Integer::intValue)
+                    .toArray());
+
             average(arr, arrSize);
             intermediate(arr, arrSize);
         }
@@ -76,3 +78,25 @@ public class RoadToBiodome04 {
         }
     }
 }
+
+/*
+    args에서 '/'를 구분인자로 사용하여 여러 배열을 만드는 방법
+    1. 정규 표현식 사용
+    String all = String.join(" ", args); // ex: "1 2 3 / 4 5 / 6 7"
+    String[] groupStrs = all.split("\\s*\\s*");  / 주석 문제로 작은 따옴표 추가
+    List<int[]> result = new ArrayList<>();
+    for (String group : groupStrs) {
+        String[] nums = group.trim().split("\\s+");
+        int[] arr = Arrays.stream(nums)
+                    .mapToInt(String::parseInt)
+                    .toArray();
+                    result.add(arr);
+        }
+    해당 방법은 args[]에서 각 요소들을 " "을 추가하여 하나의 문자로 만들고. 해당 문자열에서 '/'를 기준으로 배열을 만들기 위해서
+    .spilt()를 사용한다.
+
+    정규 표현식 \\s*\\s*, \\s+ 의미
+    * \\s*'/\\s* : \\s 는 공백 문자를 의미하고, * 이스케이프 문자는 0개 이상의 반복을 의미한다.
+                 위 조건을 합쳐 해당 표현식은 실제 문자(/) 앞 뒤의 공백을 제거
+    * \\s+ : +는 1개 이상의 반복
+*/
