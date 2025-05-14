@@ -99,7 +99,7 @@ public class RoadToBiodome06 {
                 int maxOfLeft;
                 if (i == 0) maxOfLeft = arr2[j - 1];
                 else if (j == 0) maxOfLeft = arr1[i - 1];
-                else maxOfLeft = Math.max(arr1[i - 1], arr2[j - 1]);
+                else maxOfLeft = arr1[i - 1] > arr2[j - 1] ? arr1[i - 1] : arr2[j - 1];
 
                 if ((n + m) % 2 == 1) {
                     return maxOfLeft;
@@ -108,13 +108,13 @@ public class RoadToBiodome06 {
                 int minOfRight;
                 if (i == n) minOfRight = arr2[j];
                 else if (j == m) minOfRight = arr1[i];
-                else minOfRight = Math.min(arr1[i], arr2[j]);
+                else minOfRight = arr1[i] < arr2[j] ? arr1[i] : arr2[j];
 
                 return (maxOfLeft + minOfRight) / 2.0;
             }
         }
 
-        throw new IllegalArgumentException("Input arrays are not sorted.");
+        throw new IllegalArgumentException("배열이 정렬되어 않아 중간값을 구하기 어렵습니다.");
     }
     private static int[] parseArr(List<String> group) {
         return group.stream()
@@ -137,7 +137,6 @@ public class RoadToBiodome06 {
                     }
                     return -1;
                 })
-//                .mapToInt(Integer::parseInt)
                 .toArray();
     }
 
