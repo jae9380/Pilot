@@ -38,7 +38,7 @@ public class RoadToBiodome05 {
             list.add(tempArr);
         }
 
-        int[] totalArr = new int[list.get(0).length + list.get(0).length];
+        int[] totalArr = new int[list.get(0).length + list.get(1).length];
 
         System.arraycopy(list.get(0), 0, totalArr, 0, list.get(0).length);
         System.arraycopy(list.get(1), 0, totalArr, list.get(0).length, list.get(1).length);
