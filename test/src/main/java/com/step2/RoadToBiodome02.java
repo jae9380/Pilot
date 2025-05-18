@@ -10,7 +10,7 @@ public class RoadToBiodome02 {
         String input = args[0];
 
         if (isItPalindrome(input)) {
-            System.out.println(input);
+            System.out.printf("입력값 \"%s\"는 회문입니다.", input);
             return;
         }
 
@@ -21,8 +21,6 @@ public class RoadToBiodome02 {
         for (int i = 0; i <input.length() ; i++) {
             System.out.print(customStack.pop());
         }
-
-
     }
     static void validationInput(String str) {
         if (str.trim().isEmpty()) {

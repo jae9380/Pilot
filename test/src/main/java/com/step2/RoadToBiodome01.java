@@ -8,6 +8,9 @@ public class RoadToBiodome01 {
     private static final int MAX = 1000;
     private static final int MIN = 0;
     public static void main(String[] args) {
+        System.out.print("input data : ");
+        for (String arg : args) System.out.print(arg+ " ");
+        System.out.println();
         List<Integer> list = new ArrayList<>();
         int[] counts = new int[MAX + 1];
         try {
@@ -35,9 +38,5 @@ public class RoadToBiodome01 {
         for (int i = 0; i < counts.length ; i++) {
             if (counts[i] == 1) System.out.println(i);
         }
-
-//        try {
-//
-//        }catch ()
     }
 }
