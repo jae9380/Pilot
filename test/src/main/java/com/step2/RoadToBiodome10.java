@@ -29,7 +29,7 @@ public class RoadToBiodome10 {
             }
         }
 
-        System.out.println(count);
+        System.out.println("answer = "+count);
     }
 
     static void dfs(int start) {
