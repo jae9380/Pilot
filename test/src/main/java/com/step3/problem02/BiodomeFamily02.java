@@ -8,7 +8,6 @@ public class BiodomeFamily02 {
             String[] inputData = arg.split("/");
             organism = new Organism(inputData[0].trim(), inputData[1].trim(), inputData[2].trim(), inputData[3].trim(), inputData[4].trim());
             organism.displayInfo();
-            System.out.println("LifeNest에 organism 데이터 저장");
             lifeNest.addOrganism(organism);
             System.out.println();
         }
