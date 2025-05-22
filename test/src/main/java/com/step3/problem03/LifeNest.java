@@ -18,9 +18,9 @@ public class LifeNest {
         organismList.add(organism);
         String[] info = organism.getAllInfo().values().toArray(new String[0]);
         String extraInfo = organism instanceof Animal
-                ? "\t 주식: "+info[3]+" \t 먹이: " + info[4]+"\n"
+                ? "\t 주식: "+info[3]+" \t 먹이: " + info[4]
                 : organism instanceof Plant
-                ? "\t 개화 시기: "+info[3]+"월 \t 열매 여부: " + info[4]+"\n"
+                ? "\t 개화 시기: "+info[3]+"월 \t 열매 여부: " + info[4]
                 : "\t [기타]";
         System.out.printf("[LifeNest] 새로운 데이터 추가 이름: %1$-6s \t 분류: %2$-6s \t 서식지: %3$-6s %4$s",
                 info[0], info[1], info[2],extraInfo);
