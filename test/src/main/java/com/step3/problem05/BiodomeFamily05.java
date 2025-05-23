@@ -4,6 +4,7 @@ import com.step3.problem05.entity.SolarStone;
 import com.step3.problem05.entity.Sorcerer;
 import com.step3.problem05.entity.WaterMirror;
 import com.step3.problem05.entity.WindAmulet;
+import com.step3.problem05.entity.ability.Chargeable;
 
 public class BiodomeFamily05 {
     public static void main(String[] args) {
@@ -17,5 +18,13 @@ public class BiodomeFamily05 {
         sorcerer.addArtifact(waterMirror);
         System.out.println();
         sorcerer.useArtifacts(true,false);
+        System.out.println();
+        solarStone.charge(30);
+        windAmulet.charge(30);
+        waterMirror.charge(30);
+        solarStone.checkChargedEnergy();
+        windAmulet.checkChargedEnergy();
+        waterMirror.checkChargedEnergy();
+        Chargeable.showChargingTips();
     }
 }
