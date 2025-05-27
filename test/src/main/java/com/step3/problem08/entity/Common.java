@@ -1,7 +1,5 @@
 package com.step3.problem08.entity;
 
-import java.time.LocalDateTime;
-
 public class Common extends Member implements PracticeManager{
     public Common(String name) {
         super(name);
