@@ -1,6 +1,8 @@
 package com.step4.problem04;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Java standard library class {@link java.util.ArrayList}를 참고하여 직접 구현
@@ -27,6 +29,7 @@ public class BiologicalSystem<G> {
     public boolean add(G g) {
         ensureCapacity(size + 1);
         elementData[size++] = g;
+        System.out.printf("[BiologicalSysTem] 새로운 생물이 등록되었습니다 : %s\n", ((BiologicalEntity<?>) g).getName());
         return true;
     }
 
@@ -35,7 +38,15 @@ public class BiologicalSystem<G> {
         ensureCapacity(size + 1);
         System.arraycopy(elementData, index, elementData, index + 1, size - index);
         elementData[index] = g;
+        System.out.printf("[BiologicalSysTem] 새로운 생물이 등록되었습니다 : %s\n", ((BiologicalEntity<?>) g).getName());
+
         size++;
+    }
+
+    public void add(G... g) {
+        for (G g1 : g) {
+            add(g1);
+        }
     }
 
 //    delete()
@@ -62,6 +73,9 @@ public class BiologicalSystem<G> {
             for (int index = 0; index < size; index++) {
                 if (o.equals(elementData[index])) {
                     fastRemove(index);
+                    if (o instanceof BiologicalEntity<?>) {
+                        System.out.printf("[BiologicalSysTem] 해당 생물이 삭제되었습니다 : %s\n", ((BiologicalEntity<?>) o).getName());
+                    }
                     return true;
                 }
             }
@@ -75,31 +89,30 @@ public class BiologicalSystem<G> {
             elementData[i] = null;
         }
         size = 0;
+        System.out.println("[BiologicalSysTem] 생물 정보 리스트 전체 데이터를 삭제 했습니다.");
     }
 
 //    show()
     public void show() {
-        System.out.print("[");
-        for (int i = 0; i < size; i++) {
-            System.out.print(elementData[i]);
-            if (i != size - 1) System.out.print(", ");
+        if (size == 0) {
+            System.out.println("[BiologicalSysTem] 생물 정보 리스트가 비어 있습니다.");
+        } else {
+            System.out.printf("[BiologicalSysTem] 가장 최근에 추가된 생물 정보: %s\n", ((BiologicalEntity<?>)elementData[size - 1]).getName());
         }
-        System.out.println("]");
     }
 
 //    isEmpty()
     public boolean isEmpty() {
+        System.out.printf("[BiologicalSysTem] %s\n", size == 0 ? "생물 정보 리스트가 비어 있습니다." : "생물 정보 리스트가 비어 있지 않습니다.");
         return size == 0;
     }
 
     public int size() {
+        System.out.printf("[BiologicalSysTem] 생물 정보 리스트의 길이는 %d 입니다.\n", size);
+
         return size;
     }
 
-    public G get(int index) {
-        rangeCheck(index);
-        return elementData(index);
-    }
 //    ---- private Method ----
 /*
     배열의 크기를 늘려야 하는 상황에서 기본적으로 1.5배로 늘리는 것이 우선 계산을 한다.

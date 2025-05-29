@@ -9,5 +9,6 @@ public class PlantFeature {
         this.flowerColor = flowerColor;
         this.hasFruit = Boolean.parseBoolean(hasFruit);
         this.bloomSeason = bloomSeason;
+        System.out.printf("%1$s\t %2$s\t %3$s\n", flowerColor, this.hasFruit ? "열매 있음":"열매 없음", bloomSeason);
     }
 }

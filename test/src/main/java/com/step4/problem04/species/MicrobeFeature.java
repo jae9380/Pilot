@@ -12,5 +12,6 @@ public class MicrobeFeature {
         this.environment = environment;
         this.pathogenic = Boolean.parseBoolean(pathogenic);
         this.metabolismType = metabolismType;
+        System.out.printf("%1$s\t %2$s\t %3$s\n", environment, this.pathogenic ? "병원성 있음":"병원성 없음", metabolismType);
     }
 }
