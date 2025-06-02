@@ -46,15 +46,6 @@ public class BiologicalEntity<G> {
         this.species = species;
     }
 
-    @Override
-    public String toString() {
-        return "BiologicalEntity{" +
-                "name='" + name + '\'' +
-                ", classification='" + classification + '\'' +
-                ", species=" + species +
-                '}';
-    }
-
     @SuppressWarnings("unchecked")
     private G getObject(String... info) {
         G g;
