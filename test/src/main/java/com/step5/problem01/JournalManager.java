@@ -20,6 +20,14 @@ public class JournalManager {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("리소스 파일을 읽는 중 오류 발생: " + fileName);
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.out.println("BufferedReader 닫는 중 오류 발생: " + e.getMessage());
+                }
+            }
         }
 
         return null;

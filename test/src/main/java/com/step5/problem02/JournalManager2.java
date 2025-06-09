@@ -1,8 +1,7 @@
 //package com.step5.problem02;
 //
 //import com.step5.problem02.Journal;
-//import com.step5.problem03.customException.ExceptionTypes;
-//
+//import com.step5.problem02.customException.EmptyFileException;
 //
 //import java.io.*;
 //import java.net.URISyntaxException;
@@ -27,7 +26,7 @@
 //        } catch (SecurityException e) {
 //            System.out.println(e.getMessage());
 //            e.printStackTrace();
-//        }catch (ExceptionTypes.EmptyFileException e) {
+//        }catch (EmptyFileException e) {
 //            System.out.println(e.getMessage());
 //            e.printStackTrace();
 //        }catch (IOException e) {
@@ -73,14 +72,23 @@
 //
 //    private String readContent(InputStream is) throws IOException, EmptyFileException {
 //        StringBuilder content = new StringBuilder();
-//        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
+//        BufferedReader reader = null;
+//        try {
+//            reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 //            String line;
 //            while ((line = reader.readLine()) != null) {
 //                content.append(line).append("\n");
 //            }
 //        } catch (IOException e) {
-//            // Exception에 메세지를 담기 위해 catch를 사용하여 예외 다시 발생
 //            throw new IOException("[IOException] 파일 내용을 읽는 중 오류 발생", e);
+//        } finally {
+//            if (reader != null) {
+//                try {
+//                    reader.close();
+//                } catch (IOException e) {
+//                    System.out.println("BufferedReader 닫는 중 오류 발생: " + e.getMessage());
+//                }
+//            }
 //        }
 //
 //        if (content.toString().trim().isEmpty()) throw new EmptyFileException();
