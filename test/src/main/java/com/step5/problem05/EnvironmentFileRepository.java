@@ -17,16 +17,6 @@ public class EnvironmentFileRepository {
         outputFile = new File(outputDir, fileName);
     }
 
-//    // 저장 (직렬화)
-//try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("file.ser"))) {
-//    oos.writeObject(environmentData);
-//}
-//
-//// 로드 (역직렬화)
-//try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("file.ser"))) {
-//    EnvironmentData data = (EnvironmentData) ois.readObject();
-////}
-
     public void save(EnvironmentData ed) throws IOException {
         List<EnvironmentData> existing = loadAll();  // 기존 데이터 불러오기
         if (existing == null) existing = new ArrayList<>();
