@@ -48,6 +48,18 @@ public class EnvironmentData {
         return dateTime;
     }
 
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public String getOxygen() {
+        return oxygen;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
     public String getDate() {
         return dateTime.split(" ")[0];
     }

@@ -45,6 +45,9 @@ public class EnvironmentManager {
         target = target.update(elements);
         node.updateEnvironmentData(target);
 
+        System.out.printf("→ 데이터 수정 완료!\n 날짜 %1$s, 수정된 데이터 %2$s,%3$s,%4$s",
+                target.getDateTime(), target.getHumidity(), target.getTemperature() ,target.getOxygen());
+
         saveData(target);
     }
 

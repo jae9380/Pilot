@@ -1,4 +1,4 @@
-//package com.step5.problem04;
+//package com.step05.problem04;
 //
 //import javax.swing.*;
 //import java.io.IOException;

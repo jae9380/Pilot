@@ -1,6 +1,6 @@
-//package com.step5.problem05;
+//package com.step05.problem05;
 //
-//import com.step5.problem05.EnvironmentData;
+//import com.step05.problem05.EnvironmentData;
 //
 //import java.io.*;
 //import java.util.ArrayList;

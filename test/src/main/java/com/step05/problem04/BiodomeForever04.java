@@ -1,8 +1,15 @@
-//package com.step5.problem04;
+//package com.step05.problem04;
 //
 //import java.util.Scanner;
 //
 //public class BiodomeForever04 {
+//    private static boolean validationInput(String type, String input) {
+//        if (!input.matches("[0-9.]+")) {
+//            System.out.printf("잘못된 값입니다. %s는 숫자로 입력해주세요.\n", type);
+//            return true;
+//        }
+//        return false;
+//    }
 //    public static void main(String[] args) {
 //        Scanner scanner = new Scanner(System.in);
 //        EnvironmentManager em = new EnvironmentManager();
@@ -15,12 +22,15 @@
 //                case "1":
 //                    System.out.print("온도를 입력하세요: ");
 //                    String temperature = scanner.nextLine();
+//                    if (validationInput("온도", temperature)) continue;
 //
 //                    System.out.print("습도를 입력하세요: ");
 //                    String humidity = scanner.nextLine();
+//                    if (validationInput("습도", humidity)) continue;
 //
 //                    System.out.print("산소 농도를 입력하세요: ");
 //                    String oxygenLevel = scanner.nextLine();
+//                    if (validationInput("산소 농도", oxygenLevel)) continue;
 //
 //                    System.out.print("측정 장소를 입력하세요: ");
 //                    String location = scanner.nextLine();

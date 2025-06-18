@@ -1,4 +1,4 @@
-//package com.step5.problem07;
+//package com.step05.problem07;
 //
 //import java.io.File;
 //import java.io.FileNotFoundException;

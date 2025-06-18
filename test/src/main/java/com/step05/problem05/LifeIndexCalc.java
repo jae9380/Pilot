@@ -1,4 +1,4 @@
-//package com.step5.problem05;
+//package com.step05.problem05;
 //
 //public class LifeIndexCalc {
 //    private static final double BIONETTI_CONSTANT = 0.415;
