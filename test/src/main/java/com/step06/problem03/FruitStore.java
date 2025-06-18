@@ -14,7 +14,15 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class FruitStore {
-    private static final Path FILE_PATH = Paths.get("src/main/resources/step06/problem03/fruit_data.csv");
+
+    /*
+    파일 입출력에서 에러가 발생하는 경우
+
+재고 관리 목록에 존재하지 않는 과일을 검색하거나 판매하는 경우
+     */
+    private static final Path FILE_PATH = Paths.get("C:/Users/ljy53/OneDrive/Desktop/SW-P/Pilot/Pilot/test/src/main/resources/step06/problem03/fruit_data.csv");
+
+//    private static final Path FILE_PATH = Paths.get("src/main/resources/step06/problem03/fruit_data.csv");
     private final HashMap<String, Integer> inventoryMap;
     private final HashMap<String, String> historyMap;
 
@@ -26,33 +34,63 @@ public class FruitStore {
     }
 
     public void sale(String name, String quantity) {
-        int saleQuantity = validationQuantity(quantity);
+        int saleQuantity;
+        try {
+            validateFruitExists(name);
 
-        if (!canSale(name, saleQuantity)) {
-            System.out.printf("%s의 남은 재고 수량이 판매 수량보다 작습니다.\n\n", name);
-            return;
+            saleQuantity = validationQuantity(quantity);
+
+            if (!canSale(name, saleQuantity)) {
+                System.out.printf("%s의 남은 재고 수량이 판매 수량보다 작습니다.\n\n", name);
+                return;
+            }
+
+            int remainStock = inventoryMap.get(name) - saleQuantity;
+
+            inventoryMap.put(name, remainStock);
+            historyMap.put(name, getHistoryFormat(saleQuantity));
+
+            System.out.printf("%1$s %2$d개가 판매되었습니다.\n\n", name, saleQuantity);
+        }catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }catch (RuntimeException e) {
+            System.out.println(e.getMessage());
         }
-
-        int remainStock = inventoryMap.get(name) - saleQuantity;
-
-        inventoryMap.put(name, remainStock);
-        historyMap.put(name, getHistoryFormat(saleQuantity));
-
-        System.out.printf("%1$s %2$d개가 판매되었습니다.\n\n", name, saleQuantity);
     }
 
     public void addStock(String name, String quantity) {
-        int addQuantity = validationQuantity(quantity);
+        try {
+            validateFruitExists(name);
 
-        int updateStock = inventoryMap.getOrDefault(name, 0) + addQuantity;
-        inventoryMap.put(name, updateStock);
+            int addQuantity = validationQuantity(quantity);
 
-        System.out.printf("%s의 재고가 %d개 추가되었습니다. 현재 재고: %d개\n\n", name, addQuantity, updateStock);
+            int updateStock = inventoryMap.getOrDefault(name, 0) + addQuantity;
+            inventoryMap.put(name, updateStock);
+
+            System.out.printf("%s의 재고가 %d개 추가되었습니다. 현재 재고: %d개\n\n", name, addQuantity, updateStock);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public void showList() {
         inventoryMap.forEach((k,v) -> System.out.printf("\t %1$s - %2$d개\n", k, v));
         System.out.println();
+    }
+
+    public void previousSalesHistory(String name) {
+        try {
+            validateFruitExists(name);
+            String[] historyInfo = historyMap.get(name).split(":");
+
+            System.out.printf("%1$s의 최근 판매 일자 : %2$s \t 판매 수량 : %3$s\n\n", name, historyInfo[0], historyInfo[1]);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void loadDataFromFile() {
@@ -67,8 +105,6 @@ public class FruitStore {
                         int stock = Integer.parseInt(data[1]);
                         String history = data[2];
 
-                        System.out.println(name+"-"+stock+"-"+history);
-
                         inventoryMap.put(name, stock);
                         historyMap.put(name, history);
                     });
@@ -78,7 +114,7 @@ public class FruitStore {
         }
     }
 
-    private void saveDataToFile() {
+    public void saveDataToFile() {
         List<String> lines = new ArrayList<>();
 
         lines.add("과일명,재고량,최근 판매 정보");
@@ -91,7 +127,7 @@ public class FruitStore {
 
         try {
             Files.write(FILE_PATH, lines, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-            System.out.println("데이터가 성공적으로 저장되었습니다.");
+            System.out.println("과일 상점 관리 시스템을 종료합니다!");
         } catch (IOException e) {
             System.out.println("파일 저장 중 오류가 발생했습니다: " + e.getMessage());
         }
@@ -101,8 +137,16 @@ public class FruitStore {
         return inventoryMap.get(name) >= stock;
     }
 
+    private void validateFruitExists(String name) throws IllegalArgumentException{
+        if (!inventoryMap.containsKey(name)) throw new IllegalArgumentException(name + "은 등록되지 않은 과일입니다.\n");
+    }
     private int validationQuantity(String quantity) throws NumberFormatException{
-        return Integer.parseInt(quantity);
+        if (quantity.contains("-")) throw new RuntimeException("마이너스 값을 입력할 수 없습니다.\n");
+        try {
+            return Integer.parseInt(quantity);
+        }catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자만 입력하세요.\n");
+        }
     }
 
     private String getHistoryFormat(int saleQuantity) {
