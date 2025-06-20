@@ -47,6 +47,13 @@ public class EnergyDistributor {
         System.out.println();
     }
 
+    /**
+     * @FunctionalInterface
+     * 해당 어노테이션 선언하는 이유
+     * 1. 해당 인터페이스는 단일의 추상 메서드를 갖는다는 명시를 하기 위함 (문서적 목적)
+     * 2. 어노테이션이 있을 경우 복수의 추상 메서드가 있을 경우 컴파일 에러가 발생된다.
+     * 3. 해당 인터페이스는 바로 람다식에 사용할 수 있도록 해준다.
+     */
     @FunctionalInterface
     interface EnergyAllocator {
         void allocate(String zone, String e);
