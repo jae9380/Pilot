@@ -6,11 +6,11 @@ public class Tank implements Runnable{
     private final Object nextLock;
     private int waterAmount;
 
-    public Tank(long number, Object lock, Object nextLock, int waterAmount) {
+    public Tank(long number, Object lock, Object nextLock) {
         this.number = number;
         this.lock = lock;
         this.nextLock = nextLock;
-        this.waterAmount = waterAmount;
+        this.waterAmount = 0;
     }
 
     @Override
