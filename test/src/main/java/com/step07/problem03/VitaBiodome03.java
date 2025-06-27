@@ -32,39 +32,32 @@ public class VitaBiodome03 {
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream())
         ) {
-
-//            요청의 첫 줄 (예: GET / HTTP/1.1)
             String requestLine = in.readLine();
             System.out.println("요청 라인: " + requestLine);
 
-            if (requestLine == null || requestLine.isEmpty()) {
-                return;
-            }
+            if (requestLine == null || requestLine.isEmpty()) return;
 
-//            요청 파싱
             String[] tokens = requestLine.split(" ");
             String method = tokens[0];
             String path = tokens[1];
 
-//            응답 생성
             String statusLine;
             String body;
 
             if (method.equals("GET") && path.equals("/")) {
-                body = "<html><body><h1>Welcome to Vitamin Storage :)</h1></body></html>";
+                body = "<div><h1>Welcome to Vitamin Storage :)</h1></div>";
                 statusLine = "HTTP/1.1 200 OK";
             } else {
-                body = "<html><body><h1>Page Not Found :(</h1></body></html>";
+                body = "<div><h1>Page Not Found :(</h1></div>";
                 statusLine = "HTTP/1.1 404 Not Found";
             }
 
             int contentLength = body.getBytes().length;
 
-//            응답 전송
             out.println(statusLine);
             out.println("Content-Type: text/html; charset=UTF-8");
             out.println("Content-Length: " + contentLength);
-            out.println(); // header-body 구분
+            out.println();
             out.println(body);
             out.flush();
 
